@@ -1,0 +1,39 @@
+##########################################################################
+# THIS FUNCTION WILL TAKE A LIST AS INPUT, SAY [1, 2, 3], AND PRINT '1, 2, AND 3'.
+# WE CHOOSE TO MAKE CASES FOR:
+    # 0. THE EMPTY LIST AND LISTS WITH ONE ELEMENT (JUST PRINTS THE FIRST ENTRY)
+    # 1. A LIST WITH TWO ENTRIES (E.G., PRINTS '1 and 2' GIVEN [1, 2])
+    # 2. OXFORD COMMA WHEN THERE ARE AT LEAST THREE ENTRIES IN THE INPUT LIST
+# WE ALSO ALLOW FOR THE INPUT TO HAVE ANY DATA TYPE AS ITS ENTRIES
+##############################################################################
+
+def format(input):
+    if type(input) != list:     # prevents an error message when the input is not a list
+        return 'Please enter a list.'
+    
+    j = str(input[0])    # j will eventually be the output
+    # j is started as the first entry of input
+    # using str() to accomodate all possible data types that might compose input
+    i = 1   # start i at 1 so that input[0] is not repeated
+    
+    while i <= len(input)-1:
+        if len(input) <= 1: # will just print the first item of input if it's the only item
+            # (also works if input==[])
+            break
+        elif len(input) == 2:   # this prints input[0] and input[1] if there are just two items in input
+            j += ' and ' + str(input[-1])
+            break
+        elif i == len(input)-1:   # oxford comma for when we terminate a longer case :)
+            j += ', and ' + str(input[i]) 
+            break
+        else:   # takes care of everything before input[-1]
+            j += ', ' + str(input[i])
+        i += 1  # INCREMENT YOUR LOOP
+
+    print(j)
+
+###############
+# DEBUG RESULTS:
+# Each case of the while loop worked smoothly.
+# The format function doesn't cough and sputter when you make input have multiple data types
+# Even works with tuples as entries of input
